@@ -6,9 +6,9 @@ class AppFormatters {
 
   static String formatNumber(double value) {
     if (value == 0) return '0';
-    if (value.abs() >= 1e12) return '${_numberFormat.format(value / 1e12)}T';
-    if (value.abs() >= 1e9) return '${_numberFormat.format(value / 1e9)}B';
-    if (value.abs() >= 1e6) return '${_numberFormat.format(value / 1e6)}M';
+    if (value.abs() >= 1e12) return '₦${_numberFormat.format(value / 1e12)}T';
+    if (value.abs() >= 1e9) return '₦${_numberFormat.format(value / 1e9)}B';
+    if (value.abs() >= 1e6) return '₦${_numberFormat.format(value / 1e6)}M';
     return _numberFormat.format(value);
   }
 
