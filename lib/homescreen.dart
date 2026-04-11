@@ -1,45 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:smart_utility_toolkit_app/features/bmi_calculator/view/bmi_view.dart';
 import 'package:smart_utility_toolkit_app/features/currency_converter/view/currency_converter_view.dart';
-import 'package:smart_utility_toolkit_app/features/loan_converter/view/loan_converter_screen.dart';
-import 'package:smart_utility_toolkit_app/features/unit_converter/view/unit_converter_screen.dart';
+import 'package:smart_utility_toolkit_app/features/length_converter/view/length_view.dart';
+import 'package:smart_utility_toolkit_app/features/temperature_converter/view/temperature_view.dart';
+import 'package:smart_utility_toolkit_app/features/weight_converter/view/weight_view.dart';
 import 'package:smart_utility_toolkit_app/models/tool_item.dart';
 import 'package:smart_utility_toolkit_app/utils/app_themes.dart';
 import 'package:smart_utility_toolkit_app/utils/navigator_helper.dart';
 
-
 final _tools = [
   ToolItem(
-    title: 'Unit Converter',
-    subtitle: 'Length · Weight · Temp · Volume · Speed',
-    icon: Icons.swap_horiz_rounded,
+    title: 'Length Converter',
+    subtitle: 'Meters, Inches, Feet, Miles, etc.',
+    icon: Icons.straighten,
     iconColor: const Color(0xFF4C6EF5),
-    page: const UnitConverterScreen(),
+    page: const LengthConverterScreen(),
   ),
   ToolItem(
-    title: 'BMI Calculator',
-    subtitle: 'Body Mass Index · Health range indicator',
+    title: 'Weight Converter',
+    subtitle: 'Kilograms, Pounds, Ounces, etc.',
     icon: Icons.monitor_weight_outlined,
     iconColor: const Color(0xFF69DB7C),
-    page: const BmiScreen(),
+    page: const WeightConverterScreen(),
   ),
   ToolItem(
-    title: 'Loan Calculator',
-    subtitle: 'EMI · Total interest · Amortization',
-    icon: Icons.account_balance_outlined,
+    title: 'Temperature Converter',
+    subtitle: 'Celsius, Fahrenheit, Kelvin',
+    icon: Icons.thermostat_outlined,
     iconColor: const Color(0xFFFFD43B),
-    page: const LoanConverterScreen(),
+    page: const TemperatureConverterScreen(),
   ),
   ToolItem(
     title: 'Currency Converter',
-    subtitle: 'Major world currencies · Static rates',
+    subtitle: 'Major currencies, live rates',
     icon: Icons.currency_exchange_rounded,
     iconColor: const Color(0xFFFF8CC8),
     page: const CurrencyConverterScreen(),
   ),
 ];
-
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -101,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                               width: 52,
                               height: 52,
                               decoration: BoxDecoration(
-                                color: tool.iconColor.withOpacity(0.12),
+                                color: tool.iconColor.withValues(alpha: 0.12),
                                 borderRadius: BorderRadius.circular(14),
                               ),
                               child: Icon(tool.icon, color: tool.iconColor, size: 24),

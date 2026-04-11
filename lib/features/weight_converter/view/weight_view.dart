@@ -1,61 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:smart_utility_toolkit_app/features/unit_converter/controller/unit_converter_controller.dart';
+import 'package:smart_utility_toolkit_app/features/weight_converter/controller/weight_controller.dart';
 import 'package:smart_utility_toolkit_app/utils/app_themes.dart';
 import 'package:smart_utility_toolkit_app/utils/text_formatter.dart';
 import 'package:smart_utility_toolkit_app/utils/thousands_formatter.dart';
-import 'package:smart_utility_toolkit_app/widgets/category_chip_row.dart';
 import 'package:smart_utility_toolkit_app/widgets/input_card.dart';
-import 'package:smart_utility_toolkit_app/widgets/primary_action_button.dart';
 import 'package:smart_utility_toolkit_app/widgets/result_card.dart';
 import 'package:smart_utility_toolkit_app/widgets/swap_button.dart';
 import 'package:smart_utility_toolkit_app/widgets/tool_scaffold.dart';
 
-class UnitConverterScreen extends StatefulWidget {
-  const UnitConverterScreen({super.key});
+class WeightConverterScreen extends StatefulWidget {
+  const WeightConverterScreen({super.key});
 
   @override
-  State<UnitConverterScreen> createState() => _UnitConverterScreenState();
+  State<WeightConverterScreen> createState() => _WeightConverterScreenState();
 }
 
-class _UnitConverterScreenState extends State<UnitConverterScreen> {
-  final _controller = UnitConverterController();
+class _WeightConverterScreenState extends State<WeightConverterScreen> {
+  final _controller = WeightController();
   final _inputController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _controller.addListener(() => setState(() {}));
+    _inputController.addListener(_onConvert);
   }
 
   @override
   void dispose() {
+    _inputController.removeListener(_onConvert);
     _controller.dispose();
     _inputController.dispose();
     super.dispose();
   }
 
   void _onConvert() {
-    final value = double.tryParse(_inputController.text.replaceAll(',', ''));
-    if (value == null) return;
+    final text = _inputController.text.replaceAll(',', '');
+    final value = double.tryParse(text);
     _controller.convert(value);
   }
 
   @override
   Widget build(BuildContext context) {
-    final categories = UnitCategory.values;
-    final categoryLabels = ['Length', 'Weight', 'Temperature'];
-
     return ToolScaffold(
-      title: 'Unit Converter',
+      title: 'Weight Converter',
       children: [
-        CategoryChipRow(
-          labels: categoryLabels,
-          selectedIndex: categories.indexOf(_controller.category),
-          onSelected: (index) {
-            _controller.setCategory(categories[index]);
-            _inputController.clear();
-          },
-        ),
         InputCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -65,23 +54,32 @@ class _UnitConverterScreenState extends State<UnitConverterScreen> {
                 style: Theme.of(context).textTheme.labelLarge,
               ),
               const SizedBox(height: 12),
-              _buildDropdown(
+              appDropdown(
                 value: _controller.fromUnit,
-                items: _controller.units,
-                onChanged: (v) => _controller.setFromUnit(v!),
+                items: WeightController.units,
+                onChanged: (v) {
+                  _controller.setFromUnit(v!);
+                  _onConvert();
+                },
               ),
               const SizedBox(height: 8),
-              SwapButton(onPressed: _controller.swapUnits),
+              SwapButton(onPressed: () {
+                _controller.swapUnits();
+                _onConvert();
+              }),
               const SizedBox(height: 8),
               Text(
                 'To',
                 style: Theme.of(context).textTheme.labelLarge,
               ),
               const SizedBox(height: 12),
-              _buildDropdown(
+              appDropdown(
                 value: _controller.toUnit,
-                items: _controller.units,
-                onChanged: (v) => _controller.setToUnit(v!),
+                items: WeightController.units,
+                onChanged: (v) {
+                  _controller.setToUnit(v!);
+                  _onConvert();
+                },
               ),
               const SizedBox(height: 16),
               Text(
@@ -101,7 +99,6 @@ class _UnitConverterScreenState extends State<UnitConverterScreen> {
             ],
           ),
         ),
-        PrimaryActionButton(label: 'Convert', onPressed: _onConvert),
         if (_controller.result != null)
           ResultCard(
             child: Column(
@@ -132,7 +129,7 @@ class _UnitConverterScreenState extends State<UnitConverterScreen> {
     );
   }
 
-  Widget _buildDropdown({
+  Widget appDropdown({
     required String value,
     required List<String> items,
     required ValueChanged<String?> onChanged,

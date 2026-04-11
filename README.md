@@ -1,12 +1,12 @@
 # Smart Utility Toolkit App
 
-The Smart Utility Toolkit is a comprehensive and aesthetically pleasing Flutter application that serves as your everyday utility companion. It combines four essential everyday tools into one streamlined, native-feeling experience.
+The Smart Utility Toolkit is a comprehensive and aesthetically pleasing Flutter application that serves as your everyday utility companion. It natively offers four distinct utility conversions.
 
 ## Features
 
-- **Unit Converter**: Easily convert between Length, Weight, and Temperature units. Features a smooth category chip selector and quick swap button.
-- **BMI Calculator**: Calculate your Body Mass Index with intuitively designed inputs and a dynamic, color-coded health range indicator.
-- **Loan Calculator**: Compute your monthly EMI, total interest, and total payment. Essential for understanding your loan amortization.
+- **Length Converter**: Quickly accurately convert between `mm`, `cm`, `m`, `km`, `in`, `ft`, and `mi`.
+- **Weight Converter**: Accurate localized weights with support for `mg`, `g`, `kg`, `lb`, and `oz`.
+- **Temperature Converter**: Simple swaps determining `°C`, `°F`, and `Kelvin`.
 - **Currency Converter**: Convert between major world currencies (USD, NGN, EUR, GBP, CNY) using statically provided rates, accompanied by intuitive drop-downs and a swap mechanism.
 
 ## App Themes & Aesthetics
@@ -26,13 +26,13 @@ The theme is strictly configured in `lib/utils/app_themes.dart` via `AppTheme.da
 | Definition | Hex Code | Purpose |
 | ---------- | -------- | ------- |
 | **Primary** | `#4C6EF5` | Global accent, main active buttons, selected states, and highlighted icons. |
-| **Accent / Success** | `#69DB7C` | BMI Normal indicator, positive growth states, secondary interactive nodes. |
+| **Accent / Success** | `#69DB7C` | Positive growth states, secondary interactive nodes. |
 | **Background** | `#0F1117` | The deepest canvas layer; scaffold backgrounds and AppBars. |
 | **Surface** | `#1A1D2E` | Container backgrounds for any floating elements like the Input Cards. |
 | **Surface Variant** | `#252840` | Backgrounds for text inputs and dropdown wrappers sitting on top of Surfaces. |
 | **On Surface** | `#F1F3F9` | Primary text color. |
 | **On Surface Muted**| `#9094B0` | Subtitles, hints, and placeholder text. |
-| **Warning / Alert** | `#FFD43B` / `#FF6B6B` | Distinctive indicators for overweight/obese scales and various error warnings. |
+| **Warning / Alert** | `#FFD43B` / `#FF6B6B` | Distinctive indicators and various error warnings. |
 | **Divider** | `#2A2D45` | Subtle separation lines between list components and statutory rows. |
 
 ## Code Architecture
@@ -42,10 +42,10 @@ Built with standard Flutter state-management (`ChangeNotifier` and `StatefulWidg
 ```text
 lib/
 ├── features/
-│   ├── bmi_calculator/
 │   ├── currency_converter/
-│   ├── loan_converter/
-│   └── unit_converter/
+│   ├── length_converter/
+│   ├── temperature_converter/
+│   └── weight_converter/
 ├── models/
 ├── utils/
 │   ├── app_themes.dart

@@ -35,13 +35,11 @@ class CurrencyController extends ChangeNotifier {
 
   void setFromCurrency(String currency) {
     _fromCurrency = currency;
-    _result = null;
     notifyListeners();
   }
 
   void setToCurrency(String currency) {
     _toCurrency = currency;
-    _result = null;
     notifyListeners();
   }
 
@@ -49,12 +47,15 @@ class CurrencyController extends ChangeNotifier {
     final temp = _fromCurrency;
     _fromCurrency = _toCurrency;
     _toCurrency = temp;
-    _result = null;
     notifyListeners();
   }
 
-  void convert(double amount) {
-    if (amount <= 0) return;
+  void convert(double? amount) {
+    if (amount == null || amount < 0) {
+       _result = null;
+       notifyListeners();
+       return;
+    }
     _result = amount * exchangeRate;
     notifyListeners();
   }

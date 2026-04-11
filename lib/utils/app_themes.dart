@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color primary = Color(0xFF4C6EF5);
-  static const Color primaryDark = Color(0xFF3A56D4);
-  static const Color accent = Color(0xFF69DB7C);
   static const Color background = Color(0xFF0F1117);
   static const Color surface = Color(0xFF1A1D2E);
   static const Color surfaceVariant = Color(0xFF252840);
   static const Color onSurface = Color(0xFFF1F3F9);
   static const Color onSurfaceMuted = Color(0xFF9094B0);
-  static const Color error = Color(0xFFFF6B6B);
   static const Color divider = Color(0xFF2A2D45);
 }
 
@@ -21,9 +18,9 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.background,
       colorScheme: const ColorScheme.dark(
         primary: AppColors.primary,
-        secondary: AppColors.accent,
+        secondary: AppColors.primary,
         surface: AppColors.surface,
-        error: AppColors.error,
+        error: Colors.red,
         onPrimary: Colors.white,
         onSecondary: Colors.black,
         onSurface: AppColors.onSurface,
