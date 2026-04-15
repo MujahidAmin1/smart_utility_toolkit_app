@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_utility_toolkit_app/features/weight_converter/controller/weight_controller.dart';
+import 'package:smart_utility_toolkit_app/features/unit_converter/weight_converter/controller/weight_controller.dart';
 import 'package:smart_utility_toolkit_app/utils/app_themes.dart';
 import 'package:smart_utility_toolkit_app/utils/text_formatter.dart';
 import 'package:smart_utility_toolkit_app/utils/thousands_formatter.dart';

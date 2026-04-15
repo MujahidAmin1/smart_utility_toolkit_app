@@ -1,13 +1,18 @@
 # Smart Utility Toolkit App
 
-The Smart Utility Toolkit is a comprehensive and aesthetically pleasing Flutter application that serves as your everyday utility companion. It natively offers four distinct utility conversions.
+The Smart Utility Toolkit is a comprehensive and aesthetically pleasing Flutter application that serves as your everyday utility companion. It natively offers four distinct utility conversions and an embedded task manager.
 
 ## Features
 
-- **Length Converter**: Quickly accurately convert between `mm`, `cm`, `m`, `km`, `in`, `ft`, and `mi`.
-- **Weight Converter**: Accurate localized weights with support for `mg`, `g`, `kg`, `lb`, and `oz`.
-- **Temperature Converter**: Simple swaps determining `°C`, `°F`, and `Kelvin`.
-- **Currency Converter**: Convert between major world currencies (USD, NGN, EUR, GBP, CNY) using statically provided rates, accompanied by intuitive drop-downs and a swap mechanism.
+- **Unit Converter Hub**: A localized suite for:
+  - **Length Converter**: Quickly accurately convert between `mm`, `cm`, `m`, `km`, `in`, `ft`, and `mi`.
+  - **Weight Converter**: Accurate localized weights with support for `mg`, `g`, `kg`, `lb`, and `oz`.
+  - **Temperature Converter**: Simple swaps determining `°C`, `°F`, and `Kelvin`.
+  - **Currency Converter**: Convert between major world currencies (USD, NGN, EUR, GBP, CNY) using statically provided rates, accompanied by intuitive drop-downs and a swap mechanism.
+- **Task Manager**: An advanced native checklist utilizing Hive storage.
+  - Track `Pending` and `Completed` statuses locally. 
+  - Complete tasks utilizing a 3-second animated UI cancellation window.
+  - Completed items correctly grey out, become strictly disabled, and drop editing capabilities, mimicking native OS checklists perfectly.
 
 ## App Themes & Aesthetics
 
@@ -37,25 +42,32 @@ The theme is strictly configured in `lib/utils/app_themes.dart` via `AppTheme.da
 
 ## Code Architecture
 
-Built with standard Flutter state-management (`ChangeNotifier` and `StatefulWidget` combinations), keeping files structured cleanly by feature.
+Built with standard Flutter state-management (`ChangeNotifier` and stateless components), mapping memory cleanly to `Hive.initFlutter()` paths, keeping files strictly modular:
 
 ```text
 lib/
 ├── features/
-│   ├── currency_converter/
-│   ├── length_converter/
-│   ├── temperature_converter/
-│   └── weight_converter/
+│   ├── task manager/
+│   │   ├── controller/
+│   │   └── view/
+│   └── unit_converter/
+│       ├── currency_converter/
+│       ├── length_converter/
+│       ├── temperature_converter/
+│       └── weight_converter/
 ├── models/
+│   ├── task_filter.dart
+│   └── task_model.dart
 ├── utils/
 │   ├── app_themes.dart
-│   ├── text_formatter.dart
+│   ├── navigator_helper.dart
 │   └── thousands_formatter.dart
 └── widgets/
     ├── input_card.dart
-    ├── primary_action_button.dart
     ├── result_card.dart
-    ├── swap_button.dart
+    ├── task_bottom_sheet.dart
+    ├── task_filter_chips.dart
+    ├── task_tile.dart
     └── tool_scaffold.dart
 ```
 

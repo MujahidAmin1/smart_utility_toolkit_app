@@ -1,40 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:smart_utility_toolkit_app/features/currency_converter/view/currency_converter_view.dart';
-import 'package:smart_utility_toolkit_app/features/length_converter/view/length_view.dart';
-import 'package:smart_utility_toolkit_app/features/temperature_converter/view/temperature_view.dart';
-import 'package:smart_utility_toolkit_app/features/weight_converter/view/weight_view.dart';
+import 'package:smart_utility_toolkit_app/features/task manager/view/task_view.dart';
+import 'package:smart_utility_toolkit_app/features/unit_converter/converter_hub_screen.dart';
 import 'package:smart_utility_toolkit_app/models/tool_item.dart';
 import 'package:smart_utility_toolkit_app/utils/app_themes.dart';
 import 'package:smart_utility_toolkit_app/utils/navigator_helper.dart';
 
 final _tools = [
   ToolItem(
-    title: 'Length Converter',
-    subtitle: 'Meters, Inches, Feet, Miles, etc.',
-    icon: Icons.straighten,
+    title: 'Unit Converter',
+    subtitle: 'Length · Weight · Temp · Currency',
+    icon: Icons.swap_horiz_rounded,
     iconColor: const Color(0xFF4C6EF5),
-    page: const LengthConverterScreen(),
+    page: const ConverterHubScreen(),
   ),
   ToolItem(
-    title: 'Weight Converter',
-    subtitle: 'Kilograms, Pounds, Ounces, etc.',
-    icon: Icons.monitor_weight_outlined,
+    title: 'Task Manager',
+    subtitle: 'Create · Track · Complete tasks',
+    icon: Icons.check_circle_outline_rounded,
     iconColor: const Color(0xFF69DB7C),
-    page: const WeightConverterScreen(),
-  ),
-  ToolItem(
-    title: 'Temperature Converter',
-    subtitle: 'Celsius, Fahrenheit, Kelvin',
-    icon: Icons.thermostat_outlined,
-    iconColor: const Color(0xFFFFD43B),
-    page: const TemperatureConverterScreen(),
-  ),
-  ToolItem(
-    title: 'Currency Converter',
-    subtitle: 'Major currencies, live rates',
-    icon: Icons.currency_exchange_rounded,
-    iconColor: const Color(0xFFFF8CC8),
-    page: const CurrencyConverterScreen(),
+    page: const TaskView(),
   ),
 ];
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_utility_toolkit_app/utils/navigator_helper.dart';
 
 class ToolScaffold extends StatelessWidget {
   final String title;
@@ -17,7 +18,7 @@ class ToolScaffold extends StatelessWidget {
         title: Text(title),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_rounded),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.pop(),
         ),
         elevation: 0,
         scrolledUnderElevation: 0,
